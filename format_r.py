@@ -51,10 +51,8 @@ importbase ="from nonebot import *\n" \
             "from nonebot.typing import T_State\n" \
             "from nonebot.adapters.cqhttp import *\n\n" \
 
-importing = "from nonebot import *\n" \
+importing = importbase+\
             "import time\n" \
-            "from nonebot.typing import T_State\n" \
-            "from nonebot.adapters.cqhttp import *\n" \
             "from nonebot import require\n" \
             "scheduler = require('nonebot_plugin_apscheduler').scheduler\n\n"
 
