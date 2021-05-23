@@ -9,7 +9,8 @@ v2.nonebot.dev
 
 能够使没有深入学习意向的萌新快速上手，
 需要先配置好nonebot2和gocq
-
+NONEbot2:v2.nonebot.dev/guide/installation.html
+gocq:github.com/Mrs4s/go-cqhttp
 
 运行format_r.py后
 U-README
