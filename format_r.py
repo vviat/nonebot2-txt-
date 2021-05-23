@@ -16,7 +16,7 @@ def cuts(origin: str, heads: str, ends: str):
 if os.path.exists("occ.txt") == True:
     pass
 else:
-    with open("occ.txt", "r", encoding="utf-8") as f:
+    with open("occ.txt", "w", encoding="utf-8") as f:
         f.write("/love\n"
                 "@爱你哟\n"
                 "$’爱你哟‘\n\n"
