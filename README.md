@@ -2,6 +2,8 @@
 项目描述：
 基于python环境，
 基于nonebot2和gocq，
+v2.nonebot.dev
+
 小白向插件，
 源码可以当作入门学习。
 
@@ -23,9 +25,11 @@ $'嗯嗯'（响应,适用py，nonebot2语法）
 
 注意：本功能基于https://github.com/nonebot/plugin-apscheduler
 
+参考：www.cnblogs.com/gdjlc/p/11432526.html
+
 ~群号，时间间隔（分钟），信息，way=minutes，model：'interval’（后两项为默认值）
 
-~500，1/2，hello word
+~500，1/2，'hello word'
 
 每半分钟，向群号为500的群，发送一次“hello word”消息
 
