@@ -5,12 +5,13 @@ def cs_remove(y_str: str, *args: str):
     for ar in args:
         y_str = y_str.replace(ar, "")
     return y_str
-
+#删除字符
 
 def cuts(origin: str, heads: str, ends: str):
     (non, op, a_1) = origin.partition(heads)
     (result, op, nin) = a_1.partition(ends)
     return result
+#截取字符
 
 
 if not os.path.exists("occ.txt"):
@@ -30,6 +31,7 @@ if not os.path.exists("plug-in_deploy.txt"):
                  "定时提醒功能 = off\n"
                  "#本功能基于https: // github.com / nonebot / plugin - apscheduler\n"
                  "#请先做好基本配置再开启本功能\n\n")
+#创建配置文件
 
 with open("plug-in_deploy.txt", "r", encoding="utf-8") as rfs:
     for x in rfs.readlines():
@@ -45,15 +47,15 @@ target_file = b + ".txt"
 # 运行后生成的文件
 
 
-Base_import = f"from nonebot import *\n" \
-              f"from nonebot.typing import T_State\n" \
-              f"from nonebot.adapters.cqhttp import *\n\n" \
+Base_import = "from nonebot import *\n" \
+              "from nonebot.typing import T_State\n" \
+              "from nonebot.adapters.cqhttp import *\n\n" \
     # 基础导入
 
 SET_ON_import = Base_import + \
-                f"import time\n" \
-                f"from nonebot import require\n" \
-                f"scheduler = require('nonebot_plugin_apscheduler').scheduler\n\n"
+                "import time\n" \
+                "from nonebot import require\n" \
+                "scheduler = require('nonebot_plugin_apscheduler').scheduler\n\n"
 # 打开定时提醒功能后的导入
 
 with open(fix_py, "w", encoding='utf-8') as f:
@@ -61,8 +63,6 @@ with open(fix_py, "w", encoding='utf-8') as f:
         f.write(Base_import)
     if c == "on":
         f.write(SET_ON_import)
-
-
 # 必要的导入
 
 
@@ -72,11 +72,11 @@ def read_target(target_file_=target_file):
     f_compile = []  # 回应"$"
     f_time_in = []  # 计时任务"~"
     f_variable = {}  # 变量，":="
-    f_lines = []
+    f_self_import = []#自导入，"import"
 
-    def list_app(line_a, addin: list, fh="", hh=""):
+    def list_app(line_a, addin: list, fh="", hh="",n = "\n"):
         if line_a.startswith(fh):
-            line_b = cs_remove(line_a, fh, hh)
+            line_b = cs_remove(line_a, fh, hh,n)
             addin.append(line_b)
 
     with open(target_file_, 'r', encoding='utf-8') as target_f:
@@ -89,11 +89,13 @@ def read_target(target_file_=target_file):
             list_app(line, addin=f_named, fh="/")
             if c == "on":
                 list_app(line, addin=f_time_in, fh="~")
+            f_self_import.append(line.startswith("import"))
     with open(fix_py, "a", encoding='utf-8') as f_py:
         for value in f_variable.values():
             f_py.write(f"{value}\n")
-    return f_named, f_instruction, f_compile, f_time_in, f_lines
-
+            for path in f_self_import:
+                f_py.write(str(path))
+    return f_named, f_instruction, f_compile, f_time_in, f_self_import
 
 def instruction():
     (f_named, f_instruction, f_compile, f_time_in, non) = read_target(target_file_=target_file)
@@ -108,11 +110,10 @@ def instruction():
     if c == "on":
         c_a = 0
         litem = []
-
         def default_setting():
             litem[3] = "way=minutes"
             litem[4] = "model：'interval'"
-
+            #默认参数
         def if_try():
             if len(litem) == 3:
                 default_setting()
@@ -141,7 +142,6 @@ def instruction():
                      f"        await bot.send_msg(message=msg,group_id=gid)\n\n"
             with open(fix_py, "a", encoding='utf-8')as f_py:
                 f_py.write(clocks)
-
 
 if __name__ == "__main__":
     instruction()
