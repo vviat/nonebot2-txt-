@@ -51,7 +51,7 @@ model意为模式
 https://www.cnblogs.com/gdjlc/p/11432526.html
 
 
-~500，1/2，holle word
+~500，1/2，'holle word'
 意为：
 每半分钟，向群号为500的群，发送一次“holle word”消息
 
