@@ -16,7 +16,11 @@ gocq:github.com/Mrs4s/go-cqhttp
 
 简易教程：https://github.com/nonebot/awesome-nonebot
 
-运行format_r.py后
+运行format_r.py后,会自动生成
+plug-in_deploy.txt和
+occ.txt配置文件
+
+
 U-README
 
 /useful（注册）
